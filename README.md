@@ -1,5 +1,5 @@
 Parvin Riyah — CS Portfolio
-Personal computer science portfolio website built as part of the B201 Computer Science Lab module at Gisma University of Applied Sciences.
+=>Personal computer science portfolio website built as part of the B201 Computer Science Lab module at Gisma University of Applied Sciences.
 ____________________________________________________________
 *Website*
 
