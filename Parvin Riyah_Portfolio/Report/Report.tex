@@ -1,0 +1,475 @@
+% ============================================================
+%  B201 Computer Science Lab -- Portfolio Project Report
+%  Author : Parvin Riyah | June 2026
+%  Font   : Times New Roman (mathptmx), 12 pt body
+%  Colour : Deep-purple / violet scheme
+% ============================================================
+
+\documentclass[12pt, a4paper]{report}
+
+% ---- Fonts & encoding --------------------------------------
+% Latin Modern (lmodern) is a modern Type1 replacement for Computer Modern.
+% NOTE: For Times New Roman on a full install, replace the three lines below with:
+%   \usepackage[T1]{fontenc}  \usepackage[utf8]{inputenc}  \usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% ---- Page geometry -----------------------------------------
+\usepackage[
+  a4paper,
+  top=2.5cm, bottom=2.5cm,
+  left=3cm,  right=2.5cm
+]{geometry}
+
+% ---- Colours -----------------------------------------------
+\usepackage{color}
+\definecolor{deepPurple}{rgb}{0.176, 0.106, 0.412}
+\definecolor{midPurple}{rgb}{0.357, 0.176, 0.557}
+\definecolor{lightPurple}{rgb}{0.608, 0.349, 0.816}
+\definecolor{paleLavender}{rgb}{0.929, 0.906, 0.965}
+\definecolor{accentViolet}{rgb}{0.486, 0.227, 0.929}
+\definecolor{darkText}{rgb}{0.102, 0.102, 0.180}
+\definecolor{white}{rgb}{1,1,1}
+
+% ---- Coloured table rows -----------------------------------
+\usepackage{colortbl}
+
+% ---- Tables ------------------------------------------------
+\usepackage{array}
+\usepackage{tabularx}
+
+% ---- Spacing & paragraph -----------------------------------
+\linespread{1.25}
+\setlength{\parskip}{7pt}
+\setlength{\parindent}{0pt}
+
+% ---- Header / footer (applied after titlepage) -------------
+\usepackage{fancyhdr}
+
+% ---- Verbatim for code blocks ------------------------------
+\usepackage{verbatim}
+
+% ---- Hyperlinks (works with lmodern + T1) ------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=midPurple,
+  linkcolor=darkText,
+  pdfborder={0 0 0}
+}
+
+% ---- Chapter / section title formatting -------------------
+%  We redefine the internal LaTeX macros to colour headings.
+\makeatletter
+
+% Chapter heading -- H1: 16 pt bold deep-purple
+\def\@makechapterhead#1{%
+  \vspace*{18pt}%
+  {\parindent\z@ \raggedright \normalfont
+   \fontsize{16}{20}\bfseries\color{deepPurple}%
+   \thechapter.\hspace{0.5em}#1
+   \par\nobreak
+   \vskip 10pt
+   \textcolor{midPurple}{\rule{\linewidth}{0.8pt}}%
+   \vskip 8pt
+  }%
+}
+
+% Unnumbered chapter heading (used by \chapter*)
+\def\@makeschapterhead#1{%
+  \vspace*{18pt}%
+  {\parindent\z@ \raggedright \normalfont
+   \fontsize{16}{20}\bfseries\color{deepPurple}%
+   #1\par\nobreak
+   \vskip 10pt
+   \textcolor{midPurple}{\rule{\linewidth}{0.8pt}}%
+   \vskip 8pt
+  }%
+}
+
+% Section -- H2: 14 pt bold mid-purple
+\renewcommand\section{%
+  \@startsection{section}{1}{\z@}%
+    {-14pt plus -4pt minus -2pt}%
+    {6pt}%
+    {\normalfont\fontsize{14}{18}\bfseries\color{midPurple}}%
+}
+
+% Subsection -- H3: 12 pt bold accent-violet
+\renewcommand\subsection{%
+  \@startsection{subsection}{2}{\z@}%
+    {-10pt plus -3pt minus -1pt}%
+    {4pt}%
+    {\normalfont\fontsize{12}{16}\bfseries\color{accentViolet}}%
+}
+
+\makeatother
+
+% ============================================================
+\begin{document}
+
+% ============================================================
+%  PAGE 1 -- COVER / ASSESSMENT SUBMISSION FORM
+% ============================================================
+\begin{titlepage}
+\thispagestyle{empty}
+
+% ---- Top purple band (simulated with coloured rule) --------
+\noindent
+\colorbox{deepPurple}{%
+  \parbox[t][2.2cm]{\textwidth}{%
+    \vspace{0.5cm}
+    \centering
+    \textcolor{white}{\large\textbf{Gisma University of Applied Sciences}}\\[4pt]
+    \textcolor{white}{\normalsize B201 Computer Science Lab}
+  }%
+}
+
+\vspace{-0.3cm}
+\noindent\textcolor{midPurple}{\rule{\linewidth}{3pt}}\\[-2pt]
+\noindent\textcolor{lightPurple}{\rule{\linewidth}{1.5pt}}
+
+\vspace{1.2cm}
+
+% ---- Report title block ------------------------------------
+\begin{center}
+  {\fontsize{22}{28}\selectfont\bfseries\color{deepPurple}
+    Portfolio Project Report}\\[14pt]
+  \textcolor{midPurple}{\rule{0.55\textwidth}{1pt}}\\[20pt]
+  \textcolor{lightPurple}{\rule{0.35\textwidth}{0.6pt}}
+\end{center}
+
+\vspace{1.1cm}
+
+% ---- Assessment Submission Form ----------------------------
+\begin{center}
+  {\fontsize{13}{17}\selectfont\bfseries\color{deepPurple}
+    Assessment Submission Form}
+\end{center}
+
+\vspace{0.4cm}
+
+\renewcommand{\arraystretch}{1.6}
+\noindent
+\begin{tabularx}{\textwidth}{%
+  >{\bfseries\color{darkText}\raggedright\arraybackslash}p{5.8cm}%
+  >{\raggedright\arraybackslash}X}
+\rowcolor{paleLavender}%
+Student Number & Parvin Riyah \hspace{0.4em}--\hspace{0.4em} GH1047690 \\
+\multicolumn{2}{>{\small\itshape\color{midPurple}\arraybackslash}l}{%
+  \quad (If this is group work, please include the student numbers of all group participants)}\\[2pt]
+\rowcolor{paleLavender}%
+Assessment Title    & Portfolio Project Report \\
+Module Code         & B201D \\
+\rowcolor{paleLavender}%
+Module Title        & Computer Science Lab \\
+Module Tutor        & William Baker Morrison \\
+\rowcolor{paleLavender}%
+Date Submitted      & 26.06.2026 \\
+\end{tabularx}
+
+\vspace{0.9cm}
+
+% ---- Declaration of Authorship -----------------------------
+\begin{center}
+  {\fontsize{13}{17}\selectfont\bfseries\color{deepPurple}
+    Declaration of Authorship}
+\end{center}
+
+\vspace{0.35cm}
+
+\begin{center}
+\begin{minipage}{0.88\textwidth}
+\fontsize{12}{17}\selectfont\color{darkText}
+\centering
+
+I declare that all material in this assessment is my own work except where
+there is clear acknowledgement and appropriate reference to the work of
+others.
+
+\vspace{10pt}
+
+I fully understand that the unacknowledged inclusion of another person's
+writings or ideas or works in this work may be considered plagiarism and
+that, should a formal investigation process confirm the allegation, I would
+be subject to the penalties associated with plagiarism, as per Gisma
+Business School, University of Applied Sciences' regulations for academic
+misconduct.
+
+\vspace{20pt}
+
+Signed.\enspace Parvin Riyah\enspace
+Date.\enspace 26.06.2026
+
+\end{minipage}
+\end{center}
+
+% ---- Bottom purple band ------------------------------------
+\vfill
+\noindent\textcolor{midPurple}{\rule{\linewidth}{1.5pt}}\\[-3pt]
+\noindent\colorbox{deepPurple}{%
+  \parbox[t][1.0cm]{\textwidth}{%
+    \vspace{0.3cm}\centering
+    \textcolor{white}{\small Portfolio Project Report \textbar{} Parvin Riyah \textbar{} June 2026}%
+  }%
+}
+
+\end{titlepage}
+
+% ============================================================
+%  PAGE 2 -- TABLE OF CONTENTS
+% ============================================================
+\newpage
+\pagenumbering{roman}
+\setcounter{page}{1}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.6pt}
+\fancyhead[L]{\small\textit{\textcolor{midPurple}{B201 Computer Science Lab}}}
+\fancyhead[R]{\small\textit{\textcolor{midPurple}{Portfolio Project Report}}}
+\fancyfoot[C]{\small\thepage}
+
+\tableofcontents
+\clearpage
+
+% ============================================================
+%  MAIN BODY
+% ============================================================
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\renewcommand{\chaptername}{}
+
+% ============================================================
+%  1. INTRODUCTION
+% ============================================================
+\chapter{Introduction}
+
+This report details the creation, structural design, and technical workflow
+of my personal computer science portfolio, developed as a core component of
+the B201 Computer Science Lab module at Gisma University of Applied Sciences.
+The goal of this portfolio is to build a cohesive, recognisable professional
+identity that showcases my software engineering skills and academic progress
+to prospective employers.
+
+The portfolio ecosystem is built around three pillars: a custom-designed
+personal website, a structured GitHub repository hosting the code, and a
+clean, high-fidelity CV typeset in LaTeX. Together, these assets provide
+a transparent look into my technical proficiencies and development practices.
+
+\section*{Links}
+
+\begin{itemize}
+  \item \textbf{LinkedIn:}\enspace
+        \href{https://www.linkedin.com/in/parvin-riyah-13724a39a}%
+             {https://www.linkedin.com/in/parvin-riyah-13724a39a}
+  \item \textbf{GitHub:}\enspace
+        \href{https://github.com/ParvinRiyah757}%
+             {https://github.com/ParvinRiyah757}
+    \item \textbf{GitHub Repostary:}\enspace
+        \href{https://github.com/ParvinRiyah757/Parvin-Riyah_Portfolio.git}%
+             {https://github.com/ParvinRiyah757/Parvin-Riyah_Portfolio.git}
+  \item \textbf{Website:}\enspace
+        \href{https://github.com/ParvinRiyah757/Parvin-Riyah_Portfolio.git}%
+             {https://github.com/ParvinRiyah757/Parvin-Riyah_Portfolio.git}
+  \item \textbf{CV:}\enspace
+        \href{https://github.com/ParvinRiyah757/Parvin-Riyah_Portfolio.git}%
+             {https://github.com/ParvinRiyah757/Parvin-Riyah_Portfolio.git}
+  \item \textbf{Report:}\enspace
+        \href{https://github.com/ParvinRiyah757/Parvin-Riyah_Portfolio.git}%
+             {https://github.com/ParvinRiyah757/Parvin-Riyah_Portfolio.git}
+\end{itemize}
+
+% ============================================================
+%  2. PORTFOLIO WEBSITE STRUCTURE
+% ============================================================
+\chapter{Portfolio Website Structure}
+
+The portfolio website is engineered as a seamless single-page experience,
+built from scratch using clean HTML and CSS. It is divided into the
+following intuitive sections:
+
+\begin{itemize}
+  \item \textbf{Hero\,/\,Header:} Introduces my name and profile as a
+        computer science student, immediately establishing the site's
+        personal branding.
+
+  \item \textbf{About Me:} A brief overview detailing my background, core
+        values like pragmatism and perfectionism, and my current path.
+
+  \item \textbf{Technical Skills:} A visually striking layout showcasing my
+        proficiencies in Python, HTML/CSS, and SQL/MySQL.
+
+  \item \textbf{Language Metrics:} A dedicated section displaying my language
+        proficiencies, highlighted by my C1 English level, using custom
+        geometric indicators.
+
+  \item \textbf{Project Cards:} Deep dives into my development projects,
+        complete with architecture summaries and direct links to their source
+        code repositories.
+
+  \item \textbf{Education:} A timeline tracking my academic steps, including
+        secondary education and my current Bachelor of Computer Science degree
+        at Gisma University of Applied Sciences.
+
+  \item \textbf{Footer:} Clean, accessible links for direct contact and
+        professional networking.
+\end{itemize}
+
+The page also features an easily accessible download button inside the
+header/about section, allowing visitors to instantly grab the PDF version of
+my LaTeX CV.
+
+% ============================================================
+%  3. GITHUB REPOSITORY STRUCTURE
+% ============================================================
+\chapter{GitHub Repository Structure}
+
+To maintain an organized development workspace, the portfolio repository is
+structured cleanly, separating core frontend code from underlying project
+assets:
+
+\noindent\textcolor{midPurple}{\rule{\linewidth}{0.5pt}}
+{\small
+\begin{verbatim}
+parvin-riyah-portfolio/
+|-- Report        # Compiled LaTeX project report
+|-- Cv        # Compiled LaTeX CV for direct download
++-- Website    #Main HTML5 structure and layout rules
+    
+\end{verbatim}
+}
+\noindent\textcolor{midPurple}{\rule{\linewidth}{0.5pt}}
+
+While smaller files are stored directly within the primary portfolio
+repository, larger database components---such as my E-sports Database
+Management System---are hosted in their own dedicated GitHub repositories to
+preserve distinct version control histories and separate documentation.
+
+% ============================================================
+%  4. DESIGN DECISIONS
+% ============================================================
+\chapter{Design Decisions}
+
+\section{Website Design \& The Blue Aesthetic}
+
+I chose to build this website using pure HTML5 and CSS3 without touching
+heavy frameworks or external libraries. I wanted to prove that I understand
+core web technologies from the ground up, keeping the site lightning-fast
+and highly maintainable.
+
+For the visuals, I wanted the site to feel deeply authentic to who I am.
+Blue is my favourite colour, so I used that as the foundation for my
+personal branding. I designed a modern, ``cosmic'' dark mode using a deep,
+immersive blue background (\verb|#0B0D1F|) paired with vibrant accent tones.
+To make it highly functional, I built a smooth fluid theme toggle using CSS
+custom properties, allowing users to shift into a clean, crisp off-white
+light mode layout (\verb|#F7F7FC|) effortlessly.
+
+\section{Responsive Layout Strategy}
+
+Unlike rigid, desktop-only layouts, I prioritised a fully responsive design.
+By combining CSS Flexbox and Grid with fluid typography math
+(\verb|clamp()|), the entire layout scales seamlessly. Whether a hiring
+manager reviews my work on a wide desktop monitor or a smartphone on the go,
+the content shifts naturally without breaking boundaries or creating awkward
+horizontal scrolls.
+
+\section{CV Design via LaTeX}
+
+For my CV, I bypassed standard word processors and wrote it from scratch
+in LaTeX. LaTeX gives me absolute control over typesetting, spacing,
+and font weight hierarchies. By manually structuring the document layout
+instead of relying on a crowded pre-made template, I ensured that the file
+remains perfectly parsable by automated Applicant Tracking Systems (ATS)
+while staying highly readable and visually satisfying for human recruiters.
+
+% ============================================================
+%  5. TOOLS AND TECHNOLOGIES
+% ============================================================
+\chapter{Tools and Technologies}
+
+\begin{itemize}
+  \item \textbf{HTML5 \& CSS:} Used to construct the entire presentation
+        layer from scratch, utilising CSS variables, grids, and flexboxes to
+        establish a fluid UI.
+
+  \item \textbf{LaTeX:} Selected for drafting a clean, publication-grade
+        r\'{e}sum\'{e}, giving me precise control over typography and margins.
+
+  \item \textbf{Python:} The core language used to write my Hangman game,
+        handling the underlying terminal game loops, data processing, and
+        state evaluation.
+
+  \item \textbf{MySQL:} Used to architect my E-sports management database
+        and the backend state storage for the Hangman game, focusing on
+        relational integrity and query optimisation.
+
+  \item \textbf{Git \& GitHub:} Used for local version control and remote
+        code hosting, tracking development iterations cleanly through clear
+        commit histories.
+\end{itemize}
+
+% ============================================================
+%  6. STRENGTHS AND WEAKNESSES
+% ============================================================
+\chapter{Strengths and Weaknesses}
+
+\section{Strengths}
+
+\begin{itemize}
+  \item \textbf{Fluid Responsiveness:} The website adapts instantly to any
+        screen size, preserving layout integrity from mobile devices to
+        desktop monitors.
+
+  \item \textbf{Strong Personal Branding:} The blue-driven cosmic aesthetic
+        stands out immediately, creating a memorable visual theme that
+        reflects my personal style.
+
+  \item \textbf{Clean Code Architecture:} Writing the site without heavy
+        frameworks keeps the codebase lightweight, highly readable, and
+        exceptionally fast to load.
+
+  \item \textbf{ATS-Optimised CV:} The LaTeX r\'{e}sum\'{e} strikes a
+        great balance between clean professional design and machine-readable
+        data structures.
+\end{itemize}
+
+\section{Weaknesses}
+
+\begin{itemize}
+  \item \textbf{Early-Stage Project Volume:} As an ongoing student, my
+        portfolio currently highlights two main projects, which limits the
+        total breadth of technologies shown.
+
+  \item \textbf{Terminal-Based Gameplay:} The Hangman game executes directly
+        inside the terminal, which demonstrates solid logical skills but lacks
+        immediate visual feedback for non-technical users.
+\end{itemize}
+
+% ============================================================
+%  7. FUTURE IMPROVEMENTS
+% ============================================================
+\chapter{Future Improvements}
+
+\begin{itemize}
+  \item \textbf{Advanced UI Transitions:} I plan to add subtle CSS
+        micro-animations to cards and menu selections to make navigation feel
+        even more dynamic and responsive.
+
+  \item \textbf{Expanding the Project Suite:} As I move forward in my
+        computer science degree, I plan to integrate more complex projects,
+        specifically focusing on full-stack web applications and interactive
+        algorithms.
+
+  \item \textbf{Upgrading to a Graphical Interface:} I would love to
+        refactor the Python Hangman game by replacing the terminal display
+        with a custom GUI (using libraries like Pygame or Tkinter) to give it
+        more visual impact.
+
+  \item \textbf{Integrated Contact Form:} Replacing the basic email links
+        with a built-in contact form would allow recruiters to message me
+        directly without leaving the website.
+\end{itemize}
+
+\end{document}
