@@ -1,0 +1,258 @@
+\documentclass[a4paper,10pt]{article}
+
+% ─── Packages ────────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=0mm, bottom=0mm, left=0mm, right=0mm, nohead, nofoot]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{pgffor}
+\usepackage{amssymb}
+\usetikzlibrary{calc}
+
+% ─── Colour Palette ──────────────────────────────────────────────────────────
+\definecolor{cosmicblue}{HTML}{1A237E}
+\definecolor{celestialblue}{HTML}{29B6F6}
+\definecolor{charcoal}{HTML}{2C3E50}
+
+% ─── Hyperlinks ──────────────────────────────────────────────────────────────
+\hypersetup{colorlinks=true, urlcolor=cosmicblue, linkcolor=cosmicblue, pdfborder={0 0 0}}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ─── 6-dot language rating ───────────────────────────────────────────────────
+\newcommand{\langdots}[1]{%
+  \foreach \i in {1,...,6}{%
+    \ifnum\i>#1{\color{cosmicblue!22}\normalsize$\bullet$}%
+    \else{\color{cosmicblue}\normalsize$\bullet$}%
+    \fi%
+  }%
+}
+
+% ─── Section headings ────────────────────────────────────────────────────────
+\newcommand{\sideheading}[1]{%
+  \vspace{12pt}%
+  {\color{cosmicblue}\fontsize{9pt}{11pt}\selectfont\textbf{\MakeUppercase{#1}}}\\[-3pt]%
+  {\color{celestialblue}\rule{\linewidth}{1.5pt}}\par\vspace{4pt}%
+}
+
+% ─── Interest pill tag ───────────────────────────────────────────────────────
+\newcommand{\interesttag}[1]{%
+  \tikz[baseline=(T.base)]{%
+    \node[draw=cosmicblue!45, rounded corners=4pt,
+          inner xsep=5pt, inner ysep=3.5pt,
+          font=\fontsize{8.5pt}{9pt}\selectfont\color{charcoal}]
+          (T) {#1};%
+  }%
+}
+\newcommand{\mainheading}[1]{%
+  \vspace{10pt}%
+  {\color{cosmicblue}\fontsize{11pt}{13pt}\selectfont\textbf{\MakeUppercase{#1}}}\\[-3pt]%
+  {\color{cosmicblue!40}\rule{\linewidth}{1pt}}\par\vspace{4pt}%
+}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+\color{charcoal}
+
+% White page fill
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[white] (current page.south west) rectangle (current page.north east);
+\end{tikzpicture}
+
+% ╔═══════════════════════════════════════════════════════════════════════════╗
+% ║  HEADER BACKGROUND + PHOTO (TikZ overlay)                                ║
+% ╚═══════════════════════════════════════════════════════════════════════════╝
+\begin{tikzpicture}[remember picture, overlay]
+  % Header band
+  \fill[cosmicblue]
+    (current page.north west) rectangle ([yshift=-55mm]current page.north east);
+  % Celestial accent stripe below header
+  \fill[celestialblue]
+    ([yshift=-55mm]current page.north west) rectangle ([yshift=-58.5mm]current page.north east);
+
+  % Profile photo — center at 42mm from right edge, 27mm down from top
+  % Radius 22mm → bottom of circle at 49mm, safely above the 55mm stripe
+  \begin{scope}
+    \clip ([xshift=-42mm, yshift=-27mm]current page.north east) circle (22mm);
+    \node at ([xshift=-42mm, yshift=-27mm]current page.north east) {%
+      \includegraphics[width=44mm, height=44mm, keepaspectratio=false]{photo.jpg}%
+    };
+  \end{scope}
+  \draw[celestialblue, line width=2.5pt]
+    ([xshift=-42mm, yshift=-27mm]current page.north east) circle (22mm);
+\end{tikzpicture}
+
+% Header text — name / title / motto on the left
+\noindent\hspace{10mm}%
+\begin{minipage}[t][55mm][c]{120mm}
+  \vspace{0pt}%
+  {\color{white}\fontsize{26pt}{30pt}\selectfont\textbf{PARVIN RIYAH}}\\[5pt]%
+  {\color{celestialblue}\fontsize{12pt}{15pt}\selectfont\textbf{Student}}\\[5pt]%
+  {\color{white!80}\fontsize{9.5pt}{12pt}\selectfont%
+   \textit{``Driven by character, defined by results.''}}%
+\end{minipage}
+
+\vspace{3.5mm}
+
+% ╔═══════════════════════════════════════════════════════════════════════════╗
+% ║  TWO-COLUMN BODY                                                         ║
+% ╚═══════════════════════════════════════════════════════════════════════════╝
+\noindent%
+%
+%% LEFT SIDEBAR — 68 mm ──────────────────────────────────────────────────────
+\begin{minipage}[t]{68mm}
+\hspace{8mm}%
+\begin{minipage}[t]{57mm}
+
+\sideheading{Contact}
+{\fontsize{9pt}{13pt}\selectfont%
+  {\color{cosmicblue}\faPhone*}\hspace{3pt}+4917629038355\\[3pt]%
+  {\color{cosmicblue}\faMapMarker*}\hspace{3pt}Berlin, Germany\\[3pt]%
+  {\color{cosmicblue}\faEnvelope}\hspace{3pt}%
+    \href{mailto:parvinriyah1896@gmail.com}{parvinriyah1896@gmail.com}\\[3pt]%
+  {\color{cosmicblue}\faLinkedin}\hspace{3pt}%
+    \href{https://www.linkedin.com/in/parvin-riyah-13724a39a}{linkedin/parvin-riyah}\\[3pt]%
+  {\color{cosmicblue}\faGithub}\hspace{3pt}%
+    \href{https://github.com/ParvinRiyah757}{github/ParvinRiyah757}%
+}
+
+\sideheading{Languages}
+{\fontsize{9pt}{13pt}\selectfont%
+\begin{tabular}{@{}l r@{}}
+  English & \langdots{5}\\[4pt]
+  Arabic  & \langdots{1}\\[4pt]
+  Bangla  & \langdots{3}\\[4pt]
+  Hindi   & \langdots{3}\\
+\end{tabular}%
+}
+
+\sideheading{Soft Skills}
+\begin{itemize}[leftmargin=9pt,
+                label={\color{celestialblue}\small$\blacktriangleright$},
+                itemsep=2.5pt, topsep=0pt]
+  {\fontsize{9pt}{11pt}\selectfont
+  \item Pragmatic
+  \item Professional
+  \item Perfectionist
+  \item Creative
+  \item Time Management
+  \item Team Player}
+\end{itemize}
+
+\sideheading{Technical Skills}
+\begin{itemize}[leftmargin=9pt,
+                label={\color{celestialblue}\small$\blacktriangleright$},
+                itemsep=2.5pt, topsep=0pt]
+  {\fontsize{9pt}{11pt}\selectfont
+  \item Python
+  \item HTML / CSS
+  \item SQL / MySQL
+  \item LaTeX
+  \item Touch Typing
+  \item Productivity Software}
+\end{itemize}
+
+\end{minipage}%
+\end{minipage}%
+%
+{\color{cosmicblue!30}\vrule width 0.8pt}%
+\hspace{5mm}%
+%
+%% RIGHT MAIN BODY — 119 mm ──────────────────────────────────────────────────
+\begin{minipage}[t]{119mm}
+
+% ── ABOUT ME ─────────────────────────────────────────────────────────────────
+\mainheading{About Me}
+{\fontsize{10pt}{14pt}\selectfont
+I am a dedicated individual who believes that work is a reflection of character.
+My background is defined not by a timeline, but by a relentless pursuit of
+excellence and a deep-seated passion for solving problems. I approach every
+challenge with precision and creativity, driven by the conviction that real
+growth happens at the intersection of curiosity and discipline.
+}
+
+\vspace{8pt}
+
+% ── EDUCATION ────────────────────────────────────────────────────────────────
+\mainheading{Education}
+
+\noindent\textbf{\fontsize{10pt}{12pt}\selectfont\color{cosmicblue}%
+  Gisma University of Applied Sciences}%
+\hfill{\fontsize{8.5pt}{10pt}\selectfont 06/2025\,--\,06/2028 (Ongoing)}\\[2pt]
+{\fontsize{9.5pt}{12pt}\selectfont\textit{Bachelor of Computer Science}%
+  \textbullet\ Berlin, Germany}
+
+\vspace{7pt}
+
+\noindent\textbf{\fontsize{10pt}{12pt}\selectfont\color{cosmicblue}%
+  Indian School Muladha, Oman}%
+\hfill{\fontsize{8.5pt}{10pt}\selectfont 04/2022\,--\,04/2024}\\[2pt]
+{\fontsize{9.5pt}{12pt}\selectfont\textit{Higher Secondary --- Science Stream}}
+
+\vspace{8pt}
+
+% ── PROJECTS ─────────────────────────────────────────────────────────────────
+\mainheading{Projects}
+
+\noindent{\fontsize{10pt}{12pt}\selectfont%
+  \textbf{\color{cosmicblue}1.\ Hangman Game}%
+  \ {\fontsize{9pt}{11pt}\selectfont(Python \& MySQL)}}\\[3pt]
+{\fontsize{10pt}{14pt}\selectfont
+An interactive command-line Hangman game built in Python, integrated with a
+MySQL database for persistent data logging, leaderboard tracking, session
+history, win/loss statistics, and multi-difficulty word banks stored in a
+normalised schema.
+}
+
+\vspace{7pt}
+
+\noindent{\fontsize{10pt}{12pt}\selectfont%
+  \textbf{\color{cosmicblue}2.\ E-Sports Database Management System}%
+  \ {\fontsize{9pt}{11pt}\selectfont(MySQL)}}\\[3pt]
+{\fontsize{10pt}{14pt}\selectfont
+A fully normalised relational database designed to manage e-sports tournament
+data --- tracking team rosters, match results, player statistics, and seasonal
+standings. Built with MySQL, featuring complex JOIN queries and views for
+rapid statistical reporting and analysis.
+}
+
+\vspace{8pt}
+
+% ── INTERESTS ────────────────────────────────────────────────────────────────
+\mainheading{Interests}
+
+\noindent
+\interesttag{Reading \& Researching}\hspace{3pt}\interesttag{Problem Solving}\\[5pt]
+\interesttag{Creative Designing}\hspace{3pt}\interesttag{Music \& Arts}\\[5pt]
+\interesttag{Dance}\hspace{3pt}\interesttag{Gaming}
+
+\end{minipage}
+
+\vspace{5mm}
+
+% ╔═══════════════════════════════════════════════════════════════════════════╗
+% ║  FOOTER BANNER                                                           ║
+% ╚═══════════════════════════════════════════════════════════════════════════╝
+\noindent\hspace{8mm}%
+\begin{tikzpicture}
+  \fill[cosmicblue, rounded corners=5pt] (0,0) rectangle (192mm, 26mm);
+  \node[align=left, text width=178mm, anchor=west] at (7mm, 13mm) {%
+    {\color{celestialblue}\fontsize{9.5pt}{11pt}\selectfont\textbf{BEYOND THE RESUME}}\\[4pt]%
+    {\color{white}\fontsize{8.5pt}{11.5pt}\selectfont
+    I am a person of diverse interests --- from designing to creating --- all of which have shaped
+    me into a well-rounded, disciplined, and curious individual. I believe that the best work is
+    done by those who are passionate about life itself.}%
+  };
+\end{tikzpicture}
+
+\end{document}
